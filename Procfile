@@ -1,0 +1,1 @@
+web gunicorn dinyurl.wsgi:application --log-file -
