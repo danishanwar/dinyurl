@@ -7,29 +7,31 @@
   box-sizing: border-box;
 }
 
-body,
-section {
+body {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1rem;
 }
 
+
 body {
   min-height: 100vh;
   font-family: "Lato", sans-serif;
   line-height: 1.5;
-  color: #111;
+  color: #580c90;
 }
 
 main {
-  max-width: 720px;
+  max-width: 360px;
+  max-height: 720px;
   width: 100%;
-  border: 2.5px solid #330867;
-  border-radius: 2.5px;
+  height: 100%;
+  border: 5px solid #fcf;
+  border-radius: 10px;
   box-shadow: 0 10px 20px rgba(17, 17, 17, 0.125),
     0 5px 5px rgba(17, 17, 17, 0.25);
-  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+  background-image: linear-gradient(to top, #580c90 0%, #580c90 100%);
 }
 
 h1 {
@@ -41,49 +43,127 @@ input,
 button {
   font-family: inherit;
   line-height: inherit;
-  color: inherit;
+  color: #123;
   border: 0;
   padding: 1rem;
 }
 
-input {
-  box-sizing: border-box;
-  width: 100%;
-}
+/*div.wrapper {
+    width: 356px;
+    height:0px;
+}*/
 
-.buttons {
+div.buttons {
   display: flex;
+  text-align: center;
+  width: 356px;
+  height:50px;
 }
 
-button {
+button[type="submit"] {
   cursor: pointer;
-  flex: 1;
-  background-color: transparent;
-  color: white;
+  display: block;
+  margin : 0 auto;
+  border-radius: 10px;
+  text-align: center;
+  box-sizing: border-box;
+  width: 30%;
+  text-align: center;
+  color: #580c90;
+  background-color: #fbf;
   &:hover {
     background-color: rgba(255, 255, 255, 0.5);
   }
+
+}
+
+div.purl {
+  display: flex;
+  text-align: center;
+  width: 356px;
+  height: 50px;
+  color: black;
+}
+
+h2 {
+  cursor: pointer;
+  display: block;
+  margin : 0 auto;
+  border-radius: 10px;
+  text-align: center;
+  box-sizing: border-box;
+  width: 80%;
+  text-align: center;
+  color: #black;
+  background-color: #580c90;
+}
+
+input[type="text"] {
+  box-sizing: border-box;
+  width: 100%;
+  display: block;
+  margin : 0 auto;
+  border-radius: 10px;
+  text-align: center;
+  box-sizing: border-box;
+  width: 90%;
+  align-items: middle;
 }
 
 section {
-  min-height: 120px;
+  min-height: 10px;
   text-align: center;
-  background-color: white;
+  background-color: #580c90;
+  border-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.anch {
+  color: white;
+  text-align: center;
+}
+
+div.bottom {
+  color: white;
+  text-align: center;
+  padding: 2rem;
+}
+
+a {
+  color: fcf;
 }
 
     </style>
 </head>
 <main>
-  <h1>URL Shortener</h1>
+  <h1 style="text-align:center;">URL Shortener</h1>
   <form id="post-form">
     {% csrf_token %}
-  <input type="text" name="link" id="link" placeholder="Enter URL here">
+   <!--  <div class="wrapper"> -->
+  <input type="text" name="link" id="link" placeholder="Please enter the URL, you need to shorten">
+  <br>
   <div class="buttons">
     <button type="submit" id="shorten">Shorten</button>
   </div>
   </form>
-  
-  <section id="section"><h2><a>Link</a></h2></section>
+
+  <div class="purl">
+    <h2><b></b></h2>
+  </div>
+  <div class="anch">
+    <b><a></a></b>
+  </div>
+  <div class="bottom">
+    <br>
+    <br>
+   <br>
+       <br>
+    <br>
+    <br>
+    <b>Copyright @ 2022 Dan-Tech</b>
+  </div>
     
 </main>
 
@@ -99,8 +179,10 @@ section {
         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
       },
       success: function(data){
+        $('h2').html("The shortened URL ")
         $('a').attr("href", ""+data)
         $('a').html("dinyurl.herokuapp.com/"+data)
+        
       }
     });
   });
