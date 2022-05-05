@@ -10,10 +10,14 @@ def index(request):
 def create(request):
 	if request.method == 'POST':
 		url = request.POST['link']
-		uid = str(uuid.uuid4())[:5]
-		new_url = origUrl(link=url,uuid=uid)
-		new_url.save()
-		return HttpResponse(uid)
+		if url != "":
+			uid = str(uuid.uuid4())[:5]
+			new_url = origUrl(link=url,uuid=uid)
+			new_url.save()
+			return HttpResponse(uid)
+		else:
+			uid = "none"
+			return HttpResponse(uid)
 
 def go(request, pk):
 	url_details = origUrl.objects.get(uuid = pk)

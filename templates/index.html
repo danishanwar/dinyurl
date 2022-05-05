@@ -1,4 +1,5 @@
 <head>
+  <title>Dinyurl</title>
     <script   src="https://code.jquery.com/jquery-3.1.1.min.js"   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="   crossorigin="anonymous"></script>
     <style>
         *,
@@ -82,7 +83,7 @@ div.purl {
   text-align: center;
   width: 356px;
   height: 50px;
-  color: black;
+  color: #0f0;
 }
 
 h2 {
@@ -179,10 +180,13 @@ a {
         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
       },
       success: function(data){
+        if (data != "none") {
         $('h2').html("The shortened URL ")
         $('a').attr("href", ""+data)
         $('a').html("dinyurl.herokuapp.com/"+data)
-        
+        } else {
+          $('h2').html("Please enter an URL Before shortning ")
+        }
       }
     });
   });
